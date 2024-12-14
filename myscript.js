@@ -1,5 +1,7 @@
 // Rock-Paper-Scissors game.
 
+let humanScore = 0;
+let computerScore = 0;
 playGame()
 
 function getComputerChoice() {
@@ -15,22 +17,34 @@ function getHumanChoice() {
 }
 
 function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
+    // const humanSelection = getHumanChoice();
+    // const computerSelection = getComputerChoice();
     
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        
-        console.log(`Computer's choice: ${computerSelection}`);
-        console.log(`Human's choice: ${humanSelection}`);
-        
-        playRound(humanSelection, computerSelection);
-        
-        console.log(`Computer's score: ${computerScore}`);
-        console.log(`Human's score: ${humanScore}`);
-    }
+    // console.log(`Computer's choice: ${computerSelection}`);
+    // console.log(`Human's choice: ${humanSelection}`);
     
+    // playRound(humanSelection, computerSelection);
+    
+    // console.log(`Computer's score: ${computerScore}`);
+    // console.log(`Human's score: ${humanScore}`);
+
+    // buttons is a node list. It looks and acts much like an array.
+    const buttons = document.querySelectorAll("button");
+
+    // we use the .forEach method to iterate through each button
+    buttons.forEach((button) => {
+        // and for each one we add a 'click' listener
+        button.addEventListener("click", () => {
+            const humanSelection = button.id;
+            const computerSelection = getComputerChoice();
+            
+            console.log(`Computer's choice: ${computerSelection}`);
+            console.log(`Human's choice: ${humanSelection}`);
+            
+            playRound(humanSelection, computerSelection);
+        });
+    });
+
 
     function playRound(humanChoice, computerChoice) {
         if ((humanChoice === "rock" && computerChoice === "scissors") || 
@@ -68,6 +82,9 @@ function playGame() {
                 console.log("You lose! Scissors beats Paper");
             }
             return;
+        }
+        else {
+            console.log("It's a tie!");
         }
     }
 }
